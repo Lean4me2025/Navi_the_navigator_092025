@@ -1,5 +1,6 @@
 <!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>NAVI · Dashboard</title><style>
-:root{--bg:#0b1636;--panel:#0f1e44;--ink:#eaf1ff;--sub:#cbe0ff;--edge:rgba(255,255,255,.14);--accent:#ffd166;--muted:#94a3b8;--green:#16a34a}
+:root{--bg:#0b1636;--panel:#0f1e44;--ink:#eaf1ff;--sub:#cbe0ff;--edge:rgba(255,255,255,.14);
+--accent:#ffd166;--muted:#94a3b8;--green:#16a34a}
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:var(--panel);border-bottom:1px solid var(--edge)}
 .brand{font-weight:900;letter-spacing:.3px}
@@ -14,11 +15,39 @@ main{max-width:1100px;margin:24px auto;padding:0 16px}
 .notice{padding:10px 12px;border-left:3px solid var(--accent);background:rgba(255,209,102,.09);border-radius:8px}
 .banner{display:none;margin-bottom:14px;border:1px solid var(--green);background:rgba(22,163,74,.1);border-radius:10px;padding:12px}
 .banner.on{display:block}
+/* Stair strategy */
+.stair-wrap{position:relative;min-height:520px;margin-bottom:14px}
+.step{position:absolute;left:0;right:0;max-width:820px;margin:0 auto;padding:16px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--edge);
+cursor:pointer;transition:transform .3s ease,background .2s ease,box-shadow .2s ease}
+.step:hover{background:rgba(255,255,255,.09);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.step h3{margin:0 0 4px;font-size:18px}
+.step small{color:var(--sub)}
+.step .panel{display:none;margin-top:10px;padding:10px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid var(--edge);font-size:14px;color:var(--sub)}
+.step.open .panel{display:block}
+/* Ascending offsets (desktop) */
+.step.s1{transform:translate(0px, 240px)}
+.step.s2{transform:translate(60px, 180px)}
+.step.s3{transform:translate(120px, 120px)}
+.step.s4{transform:translate(180px, 60px)}
+.step.s5{transform:translate(240px, 0px)}
+.step.s6{transform:translate(300px, -60px)}
+/* subtle gradient change per step */
+.step.s1{background:rgba(255,255,255,.05)}
+.step.s2{background:rgba(255,255,255,.055)}
+.step.s3{background:rgba(255,255,255,.06)}
+.step.s4{background:rgba(255,255,255,.065)}
+.step.s5{background:rgba(255,255,255,.07)}
+.step.s6{background:rgba(255,255,255,.075)}
+/* Mobile: stack naturally */
+@media (max-width: 820px){
+  .stair-wrap{min-height:auto}
+  .step{position:relative;transform:none;margin:12px 0}
+}
 </style></head><body>
 <header><div class="brand">NAVI</div><a class="btn" href="navi-strategy.html">Strategy</a></header>
 <main>
   <div class="h1">Your NAVI Dashboard</div>
-  <p class="lead">Your command center. Edit traits in Nova any time and come back — we’ll update your view.</p>
+  <p class="lead">Command center for resume, jobs, training, and progress — powered by your Nova traits.</p>
 
   <div class="card">
     <button id="revisit" class="btn">Revisit My Traits in Nova</button>
@@ -33,7 +62,7 @@ main{max-width:1100px;margin:24px auto;padding:0 16px}
 
     <div class="card">
       <h3>Resume Hub</h3>
-      <div class="small">Upload or generate resumes; create unlimited cover letters (plan-based).</div>
+      <div class="small">Upload/generate resumes; cover letters (unlimited in Pro/Suite).</div>
       <div style="margin-top:8px"><a class="btn" href="resume.html">Open Resume Hub</a></div>
     </div>
 
@@ -45,7 +74,7 @@ main{max-width:1100px;margin:24px auto;padding:0 16px}
 
     <div class="card">
       <h3>Interview Hub</h3>
-      <div class="small">STAR stories, use intel in interviews, salary questions.</div>
+      <div class="small">STAR stories, use intel in interviews, salary talk.</div>
       <div style="margin-top:8px"><a class="btn" href="interview.html">Open Interview Hub</a></div>
     </div>
 
@@ -57,12 +86,11 @@ main{max-width:1100px;margin:24px auto;padding:0 16px}
   </div>
 </main>
 <script>
-  // Demo: read traits saved by Nova (if bridge used)
   try{ 
     const s = JSON.parse(localStorage.getItem('novaSelectedTraits')||'[]');
     const el = document.getElementById('traits-summary');
     el.innerHTML = s.length ? s.map(t => '<span class="badge">'+t+'</span>').join(' ') : 'No traits saved yet.';
   }catch(e){}
-  document.getElementById('revisit').onclick = () => alert('In production this opens the Nova bridge to edit traits.');
+  document.getElementById('revisit').onclick = () => alert('In production, this opens the Nova bridge to edit traits.');
 </script>
 </body></html>
