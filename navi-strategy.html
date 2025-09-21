@@ -1,32 +1,54 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>NAVI · Strategy</title><style>
-:root{--bg:#0b1636;--panel:#0f1e44;--ink:#eaf1ff;--sub:#cbe0ff;--edge:rgba(255,255,255,.14);--accent:#ffd166;--muted:#94a3b8;--green:#16a34a}
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>NAVI · Strategy Path</title><style>
+:root{--bg:#0b1636;--panel:#0f1e44;--ink:#eaf1ff;--sub:#cbe0ff;--edge:rgba(255,255,255,.14);--accent:#ffd166;--muted:#94a3b8}
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:var(--panel);border-bottom:1px solid var(--edge)}
 .brand{font-weight:900;letter-spacing:.3px}
-main{max-width:1100px;margin:24px auto;padding:0 16px}
-.card{background:rgba(255,255,255,.05);border:1px solid var(--edge);border-radius:14px;padding:16px;margin-bottom:14px}
-.h1{font-size:26px;font-weight:900;margin:0 0 8px}
-.lead{color:var(--sub);margin:0 0 14px}
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.btn{padding:10px 14px;border-radius:10px;border:1px solid #e5e7eb;background:var(--accent);color:#1a1500;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
-.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--edge);font-size:12px;color:var(--sub)}
-.small{font-size:13px;color:var(--sub)}
-.notice{padding:10px 12px;border-left:3px solid var(--accent);background:rgba(255,209,102,.09);border-radius:8px}
-.banner{display:none;margin-bottom:14px;border:1px solid var(--green);background:rgba(22,163,74,.1);border-radius:10px;padding:12px}
-.banner.on{display:block}
+main{max-width:900px;margin:24px auto;padding:0 16px}
+.step{position:relative;margin:20px 0;padding:16px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--edge);cursor:pointer;transition:all .3s ease}
+.step:hover{background:rgba(255,255,255,.08)}
+.step h3{margin:0;font-size:18px}
+.step small{color:var(--sub)}
+.step .panel{display:none;margin-top:10px;padding:10px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid var(--edge);font-size:14px;color:var(--sub)}
+.step.open .panel{display:block}
+.btn{padding:10px 14px;border-radius:10px;border:1px solid #e5e7eb;background:var(--accent);color:#1a1500;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block;margin-top:18px}
 </style></head><body>
-<header><div class="brand">NAVI</div><a class="btn" href="navi-dashboard.html">Go to Dashboard →</a></header>
+<header><div class="brand">NAVI</div><a class="btn" href="navi-dashboard.html">Skip to Dashboard</a></header>
 <main>
-  <div class="card"><div class="h1">Turn Your Purpose Into a Plan</div>
-  <p class="lead">Use the Five W’s + How. Fit first, then salary, then training, then execution.</p></div>
-  <div class="row">
-    <div class="card"><h3>Who</h3><p class="small">Ground choices in Nova traits.</p></div>
-    <div class="card"><h3>What</h3><p class="small">Choose roles that fit first.</p></div>
-    <div class="card"><h3>Why</h3><p class="small">Clarify your motivation.</p></div>
-    <div class="card"><h3>When</h3><p class="small">~10–20 apps → 1 interview (avg).</p></div>
-    <div class="card"><h3>Where</h3><p class="small">Remote, local, or relocate.</p></div>
-    <div class="card"><h3>How</h3><p class="small">Resume tools, job intel, training, progress.</p></div>
+  <div class="h1" style="font-size:26px;font-weight:900;margin-bottom:20px">Your Strategy Path</div>
+  <p class="lead" style="color:var(--sub);margin-bottom:20px">Climb step by step — reflect, expand each bar if you want more insight.</p>
+
+  <div class="step"><h3>Who</h3><small>Rooted in Nova traits</small>
+    <div class="panel">Ground choices in your Nova traits. Your unique wiring sets the foundation for purpose-fit roles.</div>
   </div>
-  <div class="card"><a class="btn" href="navi-dashboard.html">Go to My Dashboard →</a></div>
+
+  <div class="step"><h3>What</h3><small>Roles that fit</small>
+    <div class="panel">Choose roles that align with your traits first — fit matters more than salary at the start.</div>
+  </div>
+
+  <div class="step"><h3>Why</h3><small>Motivation / Legacy</small>
+    <div class="panel">Clarify your deeper motivation: the legacy and impact that drive you forward.</div>
+  </div>
+
+  <div class="step"><h3>When</h3><small>Timing & Market</small>
+    <div class="panel">Expect ~10–20 applications to lead to 1 interview. Timing + training gaps shape your next move.</div>
+  </div>
+
+  <div class="step"><h3>Where</h3><small>Location</small>
+    <div class="panel">Remote, local, or relocation — your geography plays into your purpose path.</div>
+  </div>
+
+  <div class="step"><h3>How</h3><small>Execution</small>
+    <div class="panel">Put it all together: Resume tools, job intel, training hub, and progress tracking in Navi.</div>
+  </div>
+
+  <a class="btn" href="navi-dashboard.html">Go to My Dashboard →</a>
 </main>
+
+<script>
+document.querySelectorAll('.step').forEach(step => {
+  step.addEventListener('click', () => {
+    step.classList.toggle('open');
+  });
+});
+</script>
 </body></html>
